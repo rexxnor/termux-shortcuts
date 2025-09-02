@@ -19,16 +19,16 @@ am start \
     -a ch.sbb.mobile.android.b2c_TAB \
     # value of the tab selector, extract with
     --ei ch.sbb.mobile.android.b2c_FANCY_TAB 3                                 # value of tab selector
-    -f 0x10000000                                                              # required flag 
+    -f 0x10000000                                                              # required flag
 ```
 
-To get all of the possible values for the `b2c_FANCY_TAB` you need to execute
+To get all the possible values for the `b2c_FANCY_TAB` you need to execute
 the following command. You will need to have run the SBB application at least
 once (and have added your account if you want to see your travelcards):
 
 ```bash
 # requires root
-su - 
+su -
 dumpsys shortcut > tempfile
 ```
 
@@ -44,8 +44,15 @@ The flags are all documented in the [Android API reference](https://developer.an
 | **FLAG_ACTIVITY_SINGLE_TOP**             | If the activity is at the top of the stack, it will receive the intent instead of being launched again. | **0x20000000**         |
 | **FLAG_ACTIVITY_CLEAR_TASK**             | Clears any existing task associated with the activity before launching it.                         | **0x00080000**         |
 
-We just need to specify the new task flag. 
+We just need to specify the new task flag.
 
 > [!TIP]
 > Installing can be done by copying the script into `~/.shortcuts/` and then
-> run via the `Termux:Widget` app. 
+> run via the `Termux:Widget` app.
+
+The script listens for an activity change with the following command (which requires root):
+`sudo dumpsys activity activities | grep "ResumedActivity" | awk '{print $3}' | cut -d'/' -f1`
+
+This fetches the exact name of the activity which is tested against all known
+valid views of the app and if another activity was resumed or just changed then
+it disables the SBB app again.
