@@ -30,3 +30,7 @@ The flags are all documented in the [Android API reference](https://developer.an
 | **FLAG_ACTIVITY_CLEAR_TASK**             | Clears any existing task associated with the activity before launching it.                         | **0x00080000**         |
 
 We just need to specify the new task flag. 
+
+> [!HELPFUL]
+> Installing can be done by copying the script into `~/.shortcuts/` and then
+> run via the `Termux:Widget` app. 
