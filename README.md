@@ -18,8 +18,9 @@ am start \
     # action name
     -a ch.sbb.mobile.android.b2c_TAB \
     # value of the tab selector, extract with
-    --ei ch.sbb.mobile.android.b2c_FANCY_TAB 3                                 # value of tab selector
-    -f 0x10000000                                                              # required flag
+    --ei ch.sbb.mobile.android.b2c_FANCY_TAB 3 \
+    # flag value for FLAG_ACTIVITY_NEW_TASK
+    -f 0x10000000
 ```
 
 To get all the possible values for the `b2c_FANCY_TAB` you need to execute
